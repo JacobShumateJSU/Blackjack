@@ -1,0 +1,402 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>TenJack</title>
+        <link rel = "shortcut icon" href="https://bfgblog-a.akamaihd.net/uploads/2013/11/25-1-AC-10H.png"/>
+        <style type = "text/css">
+        body{
+            background-image:url("http://www.cocopahresort.com/wp-content/uploads/banner-bg.jpg");
+        }
+        img{
+            width:200px;
+            height:200px;
+        }
+        h1{
+            text-align:center;
+            font-family:arial;
+            font-size:70px;
+            color:#E7B80C;
+        }
+        hr{
+            width:50%;
+            background-color:#E7B80C;
+            border-color:#E7B80C;
+        }
+        h2{
+            color:#E7B80C;
+            text-align:center;
+        }
+        h3{
+            color:white;
+        }
+        #dealButton,#hitButton,#standButton{
+            background-color:black;
+            border:2px black;
+            border-radius:5px;
+            border-style:groove;
+            color:#E7B80C;
+            text-decoration:bold;
+        
+        }
+        </style>
+    </head>
+
+    <body>
+        <em><h1>BlackJack21</h1></em>
+        <br>
+        
+        <div align="center" id = "dealer">
+            <table id = "dealerTable">
+                <tr>
+                    <td><img id="dealerCardOne"src ="https://i.pinimg.com/736x/6c/a0/16/6ca016115a894f69dea75cc80f95ad92--game-cards-card-games.jpg" alt = "No card dealt"></td>
+                    <td><img id = "dealerCardTwo"src ="https://i.pinimg.com/736x/6c/a0/16/6ca016115a894f69dea75cc80f95ad92--game-cards-card-games.jpg" alt = "No card dealt"></td>
+                </tr>
+                <tr>
+                    <td align="center"><h3 id ="dealerSum"></h3></td>
+                </tr>
+            </table>
+            
+        </div>
+        <hr> 
+        <br><br><br>
+
+        <div id = "player" align="center">
+            <table id = "playerTable">
+                <tr>
+                    <td><img id = "playerCardOne" src ="https://i.pinimg.com/736x/6c/a0/16/6ca016115a894f69dea75cc80f95ad92--game-cards-card-games.jpg" alt = "No card dealt"></td>
+                    <td><img id= "playerCardTwo" src ="https://i.pinimg.com/736x/6c/a0/16/6ca016115a894f69dea75cc80f95ad92--game-cards-card-games.jpg" alt = "No card dealt"></td>
+                </tr>
+                <tr>
+                    <td align="center"><h3 id ="playerSum"></h3></td>
+                </tr>
+            </table>
+        </div>
+
+        <div align="center">
+            
+            <table>
+                    <tr>
+                            <td align="right"><button id="dealButton" onclick="DealerDeal()">Deal</button></td>
+                            <td align="center"><button id ="hitButton" onclick = "hit()">Hit</button></td>
+                            <td align="left"><button id ="standButton" onclick = "stand()">Stand</button></td>
+                    </tr>
+                    <tr>
+                            <td align="right"><h1 style = "color:#E7B80C;font-size:30px;">Balance:</h1></td>
+                            <td align="right"><h1 style = "color:#E7B80C;font-size:30px;"id = "cash">1000</h1></td>
+                            <form id = "betform">
+                                <td><input type="text" value="Bet Amount"  name="betAmount"></td>
+                                <td><input type="image" style="border:none;background:none;padding:0;width:50px;height:50px;"  src ="http://custommadecasino.com/tshirtecommerce//uploaded/dg-designer-0e9d935f147701852434523765510742843.png" alt = "Bet" onclick="betAction();return false" ></td>
+                            </form>
+
+                            
+                    </tr>
+            </table>
+
+            <h2 id ="Text">Click 'deal' to begin, closest to ten wins! Enter bet amount and press the chip to bet!</h2>
+        </div>
+
+
+        <script type = "text/javascript">
+
+            "use strict";
+            let dealerDeck = {Ace:1, Two:2, Three:3, Four:4, Five:5, Six:6, Seven:7, Eight:8, Nine:9, Ten:10, Jack:10, Queen:10, King:10};
+            let playerDeck = {Ace:1, Two:2, Three:3, Four:4, Five:5, Six:6, Seven:7, Eight:8, Nine:9, Ten:10, Jack:10, Queen:10, King:10};
+
+            let imageArray = ["https://github.com/htdebeer/SVG-cards/blob/1de6baa79c9810ddb748a562191cff2d8d5c43e3/png/1x/1_diamond.png?raw=true",
+            "https://github.com/htdebeer/SVG-cards/blob/1de6baa79c9810ddb748a562191cff2d8d5c43e3/png/1x/2_club.png?raw=true",
+            "https://github.com/htdebeer/SVG-cards/blob/1de6baa79c9810ddb748a562191cff2d8d5c43e3/png/1x/3_heart.png?raw=true",
+            "https://github.com/htdebeer/SVG-cards/blob/1de6baa79c9810ddb748a562191cff2d8d5c43e3/png/1x/4_club.png?raw=true",
+            "https://github.com/htdebeer/SVG-cards/blob/1de6baa79c9810ddb748a562191cff2d8d5c43e3/png/1x/5_diamond.png?raw=true",
+            "https://github.com/htdebeer/SVG-cards/blob/1de6baa79c9810ddb748a562191cff2d8d5c43e3/png/1x/6_diamond.png?raw=true",
+            "https://github.com/htdebeer/SVG-cards/blob/1de6baa79c9810ddb748a562191cff2d8d5c43e3/png/1x/7_heart.png?raw=true",
+            "https://github.com/htdebeer/SVG-cards/blob/1de6baa79c9810ddb748a562191cff2d8d5c43e3/png/1x/8_diamond.png?raw=true",
+            "https://github.com/htdebeer/SVG-cards/blob/1de6baa79c9810ddb748a562191cff2d8d5c43e3/png/1x/9_spade.png?raw=true",
+            "https://github.com/htdebeer/SVG-cards/blob/1de6baa79c9810ddb748a562191cff2d8d5c43e3/png/1x/10_spade.png?raw=true",
+            "https://github.com/htdebeer/SVG-cards/blob/1de6baa79c9810ddb748a562191cff2d8d5c43e3/png/1x/jack_club.png?raw=true",
+            "https://github.com/htdebeer/SVG-cards/blob/1de6baa79c9810ddb748a562191cff2d8d5c43e3/png/1x/queen_club.png?raw=true",
+            "https://github.com/htdebeer/SVG-cards/blob/1de6baa79c9810ddb748a562191cff2d8d5c43e3/png/1x/king_spade.png?raw=true",
+            ];
+
+            let balance = 1000;
+            let bet;
+            let dealerSum;
+            let playerSum;
+            let dealerInitialCellCount;
+            let dealerAmendCellCount;
+            let dealerAmendedCells;
+            let playerInitialCellCount;
+            let playerAmendCellCount;
+            let playerAmendedCells;
+            document.getElementById("Text").innerHTML=" ";
+            document.getElementById('standButton').style.visibility = "hidden";
+            document.getElementById('hitButton').style.visibility = "hidden";
+
+
+            let DealerDeal = function(){
+                dealerInitialCellCount = document.getElementById("dealerTable").rows[0].cells.length;
+                if(balance <= 0){
+                    alert("You busted!");
+                    document.getElementById('cash').innerHTML = "Busted!";
+                }
+                else if(isNaN(bet) || bet == ""){
+                    alert("Please make a bet");
+
+                }
+                else{
+                    var cardArray  = Object.keys(dealerDeck);
+                    var randomNumber = Math.random();
+                    var arrayLength = cardArray.length-1;
+                    var cardIndex  = Math.floor(randomNumber * arrayLength);
+                    var randomKey    = cardArray[cardIndex];
+                    var randomValue  = dealerDeck[randomKey]; 
+                    document.getElementById("dealerCardOne").src=imageArray[randomValue-1];
+
+                    var cardArray2  = Object.keys(dealerDeck);
+                    var randomNumber2 = Math.random();
+                    var arrayLength2 = cardArray2.length-1;
+                    var cardIndex2  = Math.floor(randomNumber2 * arrayLength2);
+                    var randomKey2    = cardArray2[cardIndex2];
+                    var secondRandomValue  = dealerDeck[randomKey2]; 
+                    document.getElementById("dealerCardTwo").src=imageArray[secondRandomValue-1];
+                    
+                    dealerSum = randomValue+secondRandomValue;
+
+
+                    if(dealerSum >= 17){
+                        playerDeal(randomValue,secondRandomValue)
+                    }
+                    
+                    else if (dealerSum<17){
+                        
+                        while(dealerSum <=17){
+                            let amendCard = generateRandomCard();
+                            var dealerRow=document.getElementById("dealerTable").rows[0];
+                            var x=dealerRow.insertCell(0);
+                            //x.innerHTML="";
+
+                            var img = document.createElement('img');
+                            img.src = imageArray[amendCard-1];
+
+                            x.appendChild(img);
+                            dealerSum+=amendCard;
+                            dealerAmendCellCount=document.getElementById("dealerTable").rows[0].cells.length;
+                            
+                        }
+                        if(dealerSum > 21){
+                            dealerAmendedCells=dealerAmendCellCount-dealerInitialCellCount;
+                            dealerBust();
+                        }
+                        else if (dealerSum == 21){
+                            dealerAmendedCells=dealerAmendCellCount-dealerInitialCellCount;
+                            dealerBlackjack();
+                        }
+                        else{
+                            dealerAmendedCells=dealerAmendCellCount-dealerInitialCellCount;
+                            playerDeal(randomValue,secondRandomValue);
+                        }
+                        
+                        
+                    }
+                }
+            };
+
+
+
+            function generateRandomCard(){
+                var cardArray  = Object.keys(dealerDeck);
+                var randomNumber = Math.random();
+                var arrayLength = cardArray.length-1;
+                var cardIndex  = Math.floor(randomNumber * arrayLength);
+                var randomKey    = cardArray[cardIndex];
+                var randomValue  = dealerDeck[randomKey]; 
+                return randomValue;
+            }
+
+
+
+            let playerDeal = function(randomValue, secondRandomValue){
+                playerInitialCellCount = document.getElementById("playerTable").rows[0].cells.length;
+
+                var cardArray = Object.keys(dealerDeck);
+                var randomNumber = Math.random();
+                var arrayLength = cardArray.length-1;
+                var cardIndex = Math.floor(randomNumber * arrayLength);
+                var randomKey = cardArray[cardIndex];
+                var playerRandomValue = dealerDeck[randomKey];
+                document.getElementById("playerCardOne").src=imageArray[playerRandomValue-1];
+                
+
+                var cardArray2 = Object.keys(dealerDeck);
+                var randomNumber2 = Math.random();
+                var arrayLength2 = cardArray2.length-1;
+                var cardIndex2 = Math.floor(randomNumber2 * arrayLength2);
+                var randomKey2 = cardArray2[cardIndex2];
+                var playerRandomValue2 = dealerDeck[randomKey2];
+                document.getElementById("playerCardTwo").src=imageArray[playerRandomValue2-1];
+                document.getElementById("playerSum").innerHTML=String(playerRandomValue+playerRandomValue2);
+
+                
+                playerSum = playerRandomValue+playerRandomValue2;
+                document.getElementById('dealButton').style.visibility = "hidden";
+                document.getElementById('standButton').style.visibility = "visible";
+                document.getElementById('hitButton').style.visibility = "visible";
+                
+
+            };
+            
+
+
+
+            function stand(){
+                document.getElementById('dealButton').style.visibility = "visible";
+                document.getElementById('standButton').style.visibility = "hidden";
+                document.getElementById('hitButton').style.visibility = "hidden";
+                Evaluate(dealerSum,playerSum);
+            }
+
+
+
+            function hit(){
+                let newCard = generateRandomCard();
+                if(playerSum < 21){
+                    var playerRow = document.getElementById("playerTable").rows[0];
+                    var x = playerRow.insertCell(0);
+                    x.innerHTML = "";
+                    var img = document.createElement('img');
+                    img.src = imageArray[newCard-1];
+
+                    x.appendChild(img);
+                    playerSum += newCard;
+                    document.getElementById("playerSum").innerHTML= String(playerSum);
+                }
+                else if (playerSum > 21){
+                    document.getElementById('hitButton').style.visibility = "hidden";
+                    document.getElementById('standButton').style.visibility = "hidden";
+                    Evaluate(dealerSum,playerSum);
+                }
+                else if (playerSum == 21){
+                    document.getElementById('hitButton').style.visibility = "hidden";
+                    document.getElementById('standButton').style.visibility = "hidden";
+                    Evaluate(dealerSum,playerSum);
+                }
+                
+            }
+
+
+
+
+            function betAction(){
+                let betInput = document.getElementsByName("betAmount")[0].value;
+                bet = Number(betInput);
+
+                if(isNaN(bet) || bet == ""){
+                    alert('Please enter a valid number');
+                }
+                else if (bet > balance){
+                    alert("Insufficient Funds");
+
+                }
+                else if (bet <=0){
+                    alert("Please enter a proper bet");
+                }
+                else{
+                    document.getElementById('cash').innerHTML = String(balance-bet);
+                }
+                
+            }
+
+            function dealerBust(){
+                document.getElementById('hitButton').style.visibility = "hidden";
+                document.getElementById('standButton').style.visibility = "hidden";
+                document.getElementById('Text').innerHTML = "Dealer Busted! Player wins!";
+                balance+=bet;
+                document.getElementById('cash').innerHTML = String(balance);
+                
+
+            }
+
+            function dealerBlackjack(){
+                document.getElementById('hitButton').style.visibility = "hidden";
+                document.getElementById('standButton').style.visibility = "hidden";
+                document.getElementById('Text').innerHTML = "Dealer Blackjack! Player loses!";
+                balance-=bet;
+                document.getElementById('cash').innerHTML = String(balance);
+            }
+        
+            
+
+            function Evaluate(dealersum,playersum){
+                let dealer_table=document.getElementById("dealerTable").rows[0];
+                let player_table= document.getElementById("playerTable").rows[0];
+                playerAmendCellCount=document.getElementById("playerTable").rows[0].cells.length;
+                playerAmendedCells = playerAmendCellCount - playerInitialCellCount;
+
+                if(playersum > dealersum){
+                    document.getElementById("Text").innerHTML="Player wins $"+bet;
+                    balance+=bet;
+                    document.getElementById('cash').innerHTML = String(balance);
+                }
+                else if(playersum < dealersum){
+                    document.getElementById("Text").innerHTML="Dealer wins $"+bet;
+                    balance-=bet;
+                    document.getElementById('cash').innerHTML = String(balance);
+                }
+                else if (playersum == dealersum){
+                    document.getElementById("Text").innerHTML="Tie!";
+                    balance+=bet;
+                }
+                switch(dealerAmendedCells){
+                        case 0:
+                            break;
+                        case 1:
+                            dealer_table.deleteCell(0);
+                            break;
+                        case 2:
+                            dealer_table.deleteCell(0);
+                            dealer_table.deleteCell(0);
+                            break;
+                        case 3:
+                            dealer_table.deleteCell(0);
+                            dealer_table.deleteCell(0);
+                            dealer_table.deleteCell(0);
+                            break;
+                        case 4:
+                            dealer_table.deleteCell(0);
+                            dealer_table.deleteCell(0);
+                            dealer_table.deleteCell(0);
+                            dealer_table.deleteCell(0);
+                            break;
+                        default:
+                            break;
+                        
+                }
+                switch(playerAmendedCells){
+                    case 0:
+                        break;
+                    case 1:
+                        player_table.deleteCell(0);
+                        break;
+                    case 2:
+                        player_table.deleteCell(0);
+                        player_table.deleteCell(1);
+                        break;
+                    case 3:
+                        player_table.deleteCell(0);
+                        player_table.deleteCell(1);
+                        player_table.deleteCell(2);
+                        break;
+                    case 4:
+                        player_table.deleteCell(0);
+                        player_table.deleteCell(1);
+                        player_table.deleteCell(2);
+                        player_table.deleteCell(3);
+                        break;
+                    default:
+                        break;
+
+                }
+            }
+        </script>
+
+    </body>
+</html>
