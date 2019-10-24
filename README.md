@@ -10,3 +10,5 @@
 ###### This application uses 9 separate functions.
 
 # Built-In Javascript Methods used
+
+# Variables Used
