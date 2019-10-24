@@ -16,5 +16,6 @@
 Method | Purpose
 ------------ | -------------
 Math.random() | Generates random number to randomly determine player's and dealer's cards from playerDeck and dealerDeck array
+Math.floor() | Rounds product of randomNumber and arrayLength in order to index the array to choose a card. 
 
 
