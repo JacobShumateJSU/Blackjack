@@ -9,6 +9,8 @@
 # Functions Documentation
 ###### This application uses 9 separate functions.
 
+# Variables Used
+
 # Built-In Javascript Methods used
 
-# Variables Used
+
