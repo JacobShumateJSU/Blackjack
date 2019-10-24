@@ -15,6 +15,6 @@
 # Built-In Javascript Methods used
 Method | Purpose
 ------------ | -------------
-
+Math.random() | Generates random number 
 
 
