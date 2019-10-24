@@ -21,8 +21,10 @@ insertCell() | Used in the hit and deal functions in order to add a card into th
 deleteCell() | Used to reset the hands after the previous hand so new cards may be dealt.
 String() | Converts parameters to String data structure/type. Used to display calculations on page via html elements.  
 appendChild() | Used to append cards to either the player or dealer's deck.
+onclick() | Used with inline javascript within HTML form buttons to run the javascript functions that correspond to the button being pressed
 
 # Javascript HTML DOM Methods used
 Method | Purpose
 ------------ | -------------
+
 
