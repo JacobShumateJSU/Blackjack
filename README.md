@@ -15,8 +15,7 @@
 # Built-In Javascript Methods used
 Method | Purpose
 ------------ | -------------
-Math.random() | Generates random number to randomly determine player's and dealer's cards from playerDeck and dealerDeck array
+Math.random() | Generates random number to randomly determine player's and dealer's cards from playerDeck and dealerDeck array.
 Math.floor() | Rounds product of randomNumber and arrayLength in order to index the array to choose a card. 
 insertCell() | Used in the hit and deal functions in order to add a card into the row that contains either the player or the dealer's card deck.
-
-
+deleteCell() | Used to reset the hands after the previous hand so new cards may be dealt.
