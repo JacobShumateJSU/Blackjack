@@ -4,3 +4,4 @@
 # ![](screenshot.PNG)
 
 # Running the Game
+#### To play the game, simply copy and paste the code into a HTML file and then open the HTML file with a web browser. 
