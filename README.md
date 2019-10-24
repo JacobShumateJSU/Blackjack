@@ -26,5 +26,8 @@ onclick() | Used with inline javascript within HTML form buttons to run the java
 # Javascript HTML DOM Methods used
 Method | Purpose
 ------------ | -------------
+.innerHTML | Used to change HTML element's values to display player's current balance and to indicate winnings/losses
+.style.visibility | Used to hide specific text and buttons when not needed
+.createElement() | creates image element that is appended to either deck using appendChild() function
 
 
