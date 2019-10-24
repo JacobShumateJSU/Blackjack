@@ -15,6 +15,6 @@
 # Built-In Javascript Methods used
 Method | Purpose
 ------------ | -------------
-Math.random() | Generates random number 
+Math.random() | Generates random number to randomly determine player's and dealer's cards from playerDeck and dealerDeck array
 
 
