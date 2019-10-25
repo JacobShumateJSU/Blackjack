@@ -10,9 +10,9 @@
 ###### This application uses 9 separate functions.
 Function | Purpose
 ------------ | -------------
-DealerDeal() | Appends cards to the dealer's deck at the beginning of a hand.
+DealerDeal() | Appends cards to the dealer's deck at the beginning of a hand and selects a corresponding image from imageArray() to display.
 generateRandomCard() | Uses math.random() to choose random value from playerDeck and dealerDeck arrays to simulate the arbitrariness of a real card deck.
-playerDeal() |
+playerDeal() | Behaves similarly to dealerDeal(). Issues the player's hand after the player hits. 
 stand() | 
 hit() |
 betAction() |
