@@ -29,5 +29,8 @@ Method | Purpose
 .innerHTML | Used to change HTML element's values to display player's current balance and to indicate winnings/losses
 .style.visibility | Used to hide specific text and buttons when not needed
 .createElement() | creates image element that is appended to either deck using appendChild() function
+.src | Used to change image source located in table containing either deck(Changes cards)
+.value | Used to obtain user input value from HTML textbox form
+rows[0].cells.length; | Used to determine how many cards in either deck in addition to identifying the HTML table that corresponds to both decks 
 
 
