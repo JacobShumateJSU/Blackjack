@@ -10,9 +10,12 @@
 ###### This application uses 9 separate functions.
 
 
-# Variables Used
+# Important Variables 
 Variable Name | Value
 ------------ | -------------
+betInput |
+
+
 
 
 # Built-In Javascript Methods used
