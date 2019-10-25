@@ -8,6 +8,8 @@
 
 # Functions Documentation
 ###### This application uses 9 separate functions.
+Function | Purpose
+------------ | -------------
 
 
 # Important Variables 
