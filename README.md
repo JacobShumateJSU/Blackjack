@@ -13,7 +13,7 @@ Function | Purpose
 DealerDeal() | Appends cards to the dealer's deck at the beginning of a hand and selects a corresponding image from imageArray() to display.
 generateRandomCard() | Uses math.random() to choose random value from playerDeck and dealerDeck arrays to simulate the arbitrariness of a real card deck.
 playerDeal() | Behaves similarly to dealerDeal(). Issues the player's hand after the player hits. 
-stand() | 
+stand() | Hides the stand and hit button. Makes the deal button visible to be used for next hand. Proceeds to run Evaluate() function to determine who has the better hand. 
 hit() |
 betAction() |
 dealerBust() |
