@@ -11,6 +11,9 @@
 
 
 # Variables Used
+Variable Name | Value
+------------ | -------------
+
 
 # Built-In Javascript Methods used
 Method | Purpose
