@@ -20,7 +20,7 @@ imageArray | Array consisting of the image sources used for each card
 dealer/playerDeck | Arrays consisting of the numerical values of each face card in order to use for calculations
 balance | Value of player's current balance
 dealer/playerSum | Sum of the values obtained from dealer/playerDeck in order to calculate each hand.
-
+randomNumber | Generates random number to randomly deal cards.
 
 
 
