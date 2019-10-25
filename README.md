@@ -10,6 +10,16 @@
 ###### This application uses 9 separate functions.
 Function | Purpose
 ------------ | -------------
+DealerDeal() |
+generateRandomCard() |
+playerDeal() |
+stand() |
+hit() |
+betAction() |
+dealerBust() |
+dealerBlackjack() |
+Evaluate(dealersum,playersum) |
+
 
 
 # Important Variables 
