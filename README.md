@@ -14,11 +14,11 @@ DealerDeal() | Appends cards to the dealer's deck at the beginning of a hand and
 generateRandomCard() | Uses math.random() to choose random value from playerDeck and dealerDeck arrays to simulate the arbitrariness of a real card deck.
 playerDeal() | Behaves similarly to dealerDeal(). Issues the player's hand after the player hits. 
 stand() | Hides the stand and hit button. Makes the deal button visible to be used for next hand. Proceeds to run Evaluate() function to determine who has the better hand. 
-hit() |
-betAction() |
-dealerBust() |
-dealerBlackjack() |
-Evaluate(dealersum,playersum) |
+hit() | Appends card to player's deck if player chooses to hit using generateRandomCard() function
+betAction() | Obtains user input from HTML form, filters the input, assigns input to variable bet, and then proceeds to portray the balance to the player.
+dealerBust() | Displays dialogue and adjusts balance if dealer runs out of funds
+dealerBlackjack() | Displays dialogue and adjusts balance if dealer hits blackjack.
+Evaluate(dealersum,playersum) | Compares dealer and player's hands to determine who won the hand.
 
 
 
